@@ -1,0 +1,71 @@
+{% extends "body.html" %}
+
+{% block content %}
+    <div class="question-detail">
+        <h1 class="question-detail__title">{{ question.title }}</h1>
+
+        <div class="question">
+            <div class="question__author">
+                <a class="question__author-link" href=""><img class="question__author-avatar" width="40" height="40" src="/static/img/user.png" alt="Avatar"></a>
+            </div>
+
+            <div class="question__content">
+            {{ question.votes.count }}
+                <a href="" onclick="question.votes.up(request.user)">Like</a>
+
+                <a class="question__author-name">{{ question.author.username }}</a>
+                <div class="question__meta question__meta--mbottom">
+                    <span class="question__meta-item">
+                        <a href="" class="link--orange">{{ question.created_at }}</a>
+                    </span>
+                    <span class="question__meta-item"> in
+                        {% for topic in question.topics.all %}
+                            <a href="" class="link--orange">{{ topic.name }}</a>
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="question__text">
+                    {{ question.body }}
+                </div>
+            </div>
+        </div>
+
+        <div class="answer-list">
+            {% if question.answers.count > 0 %}
+                <h4 class="answer-list__title">Answers</h4>
+
+                <ul class="answers">
+                    {% for answer in question.answers.all %}
+                        <li class="answer">
+                            <div class="answer__author">
+                                <a class="answer__author-link" href=""><img class="answer__author-avatar" width="40" height="40" src="/static/img/user.png" alt="Avatar"></a>
+                            </div>
+                            <div class="answer__content">
+                                <div class="answer__author-name">
+                                    <a href="">{{ answer.author }}</a>
+                                </div>
+                                <div class="answer__meta answer__meta--mbottom">
+                                    <a href="" class="link--orange">{{ answer.created_at }}</a>
+                                </div>
+                                <div class="answer__text">
+                                    {{ answer.text }}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h4 class="no-answers">No answers yet.</h4>
+            {% endif %}
+
+
+
+            {% if request.user.is_authenticated %}
+                {% include "questions/answer_create.html" %}
+            {% else  %}
+                <h4>Please <a class="link--orange" href="{% url "login" %}">login</a> or <a class="link--orange" href="{% url "register" %}">register</a> to answer this question.</h4>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

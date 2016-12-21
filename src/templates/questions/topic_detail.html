@@ -1,0 +1,34 @@
+{% extends "body.html" %}
+
+{% block content %}
+    <div class="topic-detail-list">
+        <h2 class="topic-detail-list__title">{{ topic.name }}</h2>
+
+        <ul class="question-list__list">
+            {% for question in questions %}
+                <li class="question">
+                    <div class="question__author">
+                        <a class="question__author-link" href=""><img class="question__author-avatar" width="40" height="40" src="/static/img/user.png" alt=""></a>
+                    </div>
+
+                    <div class="question__content">
+                        <div class="question__title">
+                            <a href="{% url "question_detail" question_slug=question.slug %}">{{ question.title }}</a>
+                        </div>
+                        <div class="question__meta">
+                            <span class="question__meta-item">
+                                Most recent by <a class="link--orange">Author</a></span>
+                            <span class="question__meta-item">{{ question.created_at }}</span>
+                            <span class="question__meta-item">
+                                {% for topic in question.topics.all %}
+                                    <a href="" class="link--orange">{{ topic.name }}</a>
+                                {% endfor %}
+                            </span>
+                        </div>
+                        <div class="question__icons"></div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

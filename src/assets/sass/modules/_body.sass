@@ -1,0 +1,25 @@
+// Two column layout
+.body
+  position: relative
+  width: 70%
+  margin: 0 auto
+  &:after
+   content: " "
+   visibility: hidden
+   display: block
+   height: 0
+   clear: both
+
+  &__content
+    width: 60%
+    padding: 20px 30px
+    min-height: 458px
+    float: left
+    margin: $default-panel-margin*2 0
+    background-color: $bg-color-panel
+    border-radius: 2px
+
+  &__sidebar
+    width: 30%
+    float: right
+    margin: $default-panel-margin*2 0

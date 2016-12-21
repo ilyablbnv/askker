@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <main class="body">
+        <div class="body__content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="body__sidebar">
+            {% include "sidebar.html" %}
+        </div>
+    </main>
+{% endblock %}
+
+

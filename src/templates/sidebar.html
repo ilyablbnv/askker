@@ -1,0 +1,38 @@
+{% if request.user.is_authenticated %}
+    <section class="panel">
+        <div class="panel__info panel__info--center">
+            <p class="panel__text">Ask questions, get answers, help others and connect with people who have similar interests.</p>
+            <div class="button-block">
+                <a href="{% url "question_create" %}" class="button-block__link">Ask a question</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h1 class="panel__title">Topics</h1>
+        <div class="panel__info panel__info--left">
+            <ul class="panel__list">
+                {% for topic in topic_list %}
+                    <li class="panel__list-item">
+                        <a class="panel__list-item-link" href="{% url "topic_detail" topic_slug=topic.slug %}">{{ topic.name }}</a>
+                        <span class="panel__list-item-count">{{ topic.question_count }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h1 class="panel__title">Popular tags</h1>
+        <div class="panel__info">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi dolore explicabo id impedit, odit temporibus tenetur voluptatibus. Adipisci architecto deserunt ea ex hic illum minima optio quisquam ratione voluptate.
+        </div>
+    </section>
+{% else %}
+    <section class="panel">
+        <div class="panel__info panel__info--center">
+            <p class="panel__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni modi mollitia voluptatibus? Asperiores consequatur explicabo maxime necessitatibus unde. A, alias, at. Laborum perferendis quae, quisquam repellendus sapiente tenetur unde velit?</p>
+        </div>
+    </section>
+
+{% endif %}

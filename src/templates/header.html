@@ -1,0 +1,18 @@
+{% load staticfiles %}
+
+<header class="header">
+    <div class="header__logo header_logo--left">
+        <img class="header__image" src="/static/img/header__image.png" alt="" height="23" width="23">
+        <a class="header__link" href="{% url "index" %}">Askker</a>
+    </div>
+
+    <ul class="header__list header__list--right">
+        {% if request.user.is_authenticated %}
+            <li class="header__list-item">Hi, {{ request.user.username }}</li>
+            <li class="header__list-item header__list-item--end"><a href="{% url "logout" %}">Logout</a></li>
+        {% else %}
+            <li class="header__list-item"><a href="{% url "register" %}">Register</a></li>
+            <li class="header__list-item header__list-item--end"><a href="{% url "login" %}">Login</a></li>
+        {% endif %}
+    </ul>
+</header>

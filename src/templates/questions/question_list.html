@@ -1,0 +1,50 @@
+{% extends "body.html" %}
+
+{% block content %}
+    <div class="question-list">
+        <h2 class="question-list__title">All questions</h2>
+
+        <ul class="question-list__list">
+            {% for question in questions %}
+                {{ question.answers. }}
+                <li class="question">
+                    <div class="question__author">
+                        <a class="question__author-link" href=""><img class="question__author-avatar" width="40" height="40" src="/static/img/user.png" alt=""></a>
+                    </div>
+
+                    <div class="question__content">
+                        <div class="question__title">
+                            <a href="{% url "question_detail" question_slug=question.slug %}">{{ question.title }}</a>
+                        </div>
+                        <div class="question__meta">
+                            <span class="question__meta-item">{{ question.created_at }}</span>
+                            <span class="question__meta-item">
+                                {% for topic in question.topics.all %}
+                                    <a href="{% url "topic_detail" topic_slug=topic.slug %}" class="question__topic-link link--orange">{{ topic.name }}</a>
+                                {% endfor %}
+                            </span>
+                            {% if question.answers.count > 1 %}
+                                <span class="question__meta-item">{{ question.answers.count }} answers</span>
+                            {% elif question.answers.count == 1 %}
+                                <span class="question__meta-item">{{ question.answers.count }} answer</span>
+                            {% else %}
+                                <span>No answers</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+
+        <ul class="pagination">
+            <li class="pagination__item {% if not page.has_previous %}disabled{% endif %}">
+                <a class="pagination__button" href="{% if page.has_previous %}?page={{ page.previous_page_number }}{% else %}#{% endif %}">Previous</a>
+            </li>
+            <li class="pagination__item {% if not page.has_next %}disabled{% endif %}">
+                <a class="pagination__button" href="{% if page.has_next %}?page={{ page.next_page_number }}{% else %}#{% endif %}">Next</a>
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}

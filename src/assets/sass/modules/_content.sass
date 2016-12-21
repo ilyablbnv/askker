@@ -1,0 +1,138 @@
+.link
+  &--orange
+    color: $orange-color
+.disabled
+  a
+    background-color: #9a9a9a
+    pointer-events: none
+    cursor: default
+
+
+.question-list
+  &__title
+    margin: 0
+
+  &__list
+    margin: 0
+    padding: 0
+    color: white
+
+.topic-detail-list
+  &__title
+    margin: 0
+
+.question
+  width: 100%
+  &:after
+    content: ""
+    clear: both
+    display: table
+
+  &__content
+    margin: 0 0 0 102px
+    padding: 16px 30px 16px 0
+    border-bottom: 1px solid $border-grey
+
+  &__author
+    float: left
+    width: 40px
+    padding: 16px 30px
+    &-link
+      display: inline-block
+
+  &__topic-link
+    margin-right: 5px
+
+  &__meta
+    margin: 0
+    padding: 0
+    font-size: 12px
+    line-height: 18px
+    color: #b3b3b3
+
+    &--mbottom
+      margin-bottom: 15px
+
+    &-item:not(:last-child)
+      margin-right: 5px
+      &:after
+        margin: 0 0 0 5px
+        content: "·"
+
+  &__text
+    font-size: 16px
+
+.question-detail
+  padding: 20px 0
+  &__title
+    margin: 0
+    font-size: 24px
+    font-weight: 400
+    line-height: 36px
+
+
+
+.answer-list
+  &__title
+    color: #eeeeee
+
+.answers
+  margin: 0
+  padding: 0
+
+.answer
+  &:after
+    content: ""
+    clear: both
+    display: table
+  &__content
+    margin: 0 0 0 102px
+    padding: 16px 30px 16px 0
+    border-bottom: 1px solid $border-grey
+
+  &__author
+    float: left
+    //width: 40px
+    padding: 16px 30px
+    &-link
+      display: inline-block
+
+  &__meta
+    margin: 0
+    padding: 0
+    font-size: 12px
+    line-height: 18px
+    color: #b3b3b3
+
+    &--mbottom
+      margin-bottom: 15px
+
+  &__text
+    font-size: 14px
+
+.answer-add
+  &__title
+    color: #eeeeee
+
+  &__form
+    padding: 10px 102px
+
+
+.question-create
+  &__title
+    margin: 0
+
+.pagination
+  &__item
+    display: inline-block
+    margin-right: 10px
+  &__button
+    display: inline-block
+    font-size: 10px
+    padding: 5px 5px
+    border: 0
+    border-radius: 2px
+    background-color: $orange-color
+    color: white
+    text-transform: uppercase
+    cursor: pointer

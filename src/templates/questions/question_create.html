@@ -1,0 +1,45 @@
+{% extends "body.html" %}
+
+{% block content %}
+    <div class="question-create">
+
+
+        {% if request.user.is_authenticated %}
+            <h2 class="question-create__title">Ask a question</h2>
+
+            <form class="form" action="{% url "question_create" %}" method="POST">{% csrf_token %}
+                {#                <div>#}
+                {#                    <label class="form__label" for="title">Title</label>#}
+                {#                    {{ form.title.errors }}#}
+                {#                    <input class="form__input form__input--w100" maxlength="150" name="title" type="text" value="{% if form.title.value %}{{ form.title.value }}{% endif %}" />#}
+                {#                </div>#}
+                {##}
+                {#                <div>#}
+                {#                    <label class="form__label" for="text">Add some more detail</label>#}
+                {#                    {{ form.body.errors }}#}
+                {#                    <textarea class="form__input form__input--w100" name="text" rows="10"></textarea>#}
+                {#                </div>#}
+                {##}
+                {#                <select id="id_topics" name="topics">#}
+                {#                    {% for topic in topic_list %}#}
+                {#                        <option value="{{ topic.id }}">{{ topic.name }}</option>#}
+                {#                    {% endfor %}#}
+                {#                </select>#}
+
+                {% for field in form %}
+                    <label class="form__label" for="{{ field.name }}">{{ field.label }}</label>
+                    {{ field }}
+                {% endfor %}
+                <div>
+                    <button class="form__button" type="submit">Post your question</button>
+                </div>
+            </form>
+        {% else %}
+            <h4>Please <a class="link--orange" href="{% url "login" %}">login</a> or <a class="link--orange" href="{% url "register" %}">register</a> to ask a question.</h4>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+
+

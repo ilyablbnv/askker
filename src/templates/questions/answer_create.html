@@ -1,0 +1,8 @@
+<div class="answer-add">
+    {{ form.errors }}
+    <h4 class="answer-add__title">Your answer</h4>
+    <form class="form form--padding" action="{% url "answer_create" question_slug=question.slug %}" method="post" role="form">{% csrf_token %}
+        <textarea class="form__input form__input--w100" rows="6" name="text"></textarea>
+        <button type="submit" class="form__button">Post your answer</button>
+    </form>
+</div>

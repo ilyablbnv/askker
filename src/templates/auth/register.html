@@ -1,0 +1,21 @@
+{% extends 'body.html' %}
+
+{% block content %}
+    <div class="register">
+        <h2 class="register__title">Register</h2>
+
+        <form class="form" action="{% url "register" %}" method="post">{% csrf_token %}
+            {% for field in form %}
+                <div>
+                {{ field.errors }}
+                    <label class="form__label" for="{{ field.html_name }}">{{ field.label }}</label>
+                    <input class="form__input" maxlength="30" name="{{ field.html_name }}" type="password" />
+                </div>
+            {% endfor %}
+
+            <div>
+                <button class="form__button" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
