@@ -6,7 +6,6 @@
 
         <ul class="question-list__list">
             {% for question in questions %}
-                {{ question.answers. }}
                 <li class="question">
                     <div class="question__author">
                         <a class="question__author-link" href=""><img class="question__author-avatar" width="40" height="40" src="/static/img/user.png" alt=""></a>
@@ -28,7 +27,13 @@
                             {% elif question.answers.count == 1 %}
                                 <span class="question__meta-item">{{ question.answers.count }} answer</span>
                             {% else %}
-                                <span>No answers</span>
+                                <span class="question__meta-item">No answers</span>
+                            {% endif %}
+
+                            {% if question.votes.count == 1 %}
+                                <span class="question__meta-item">{{  question.votes.count }} vote</span>
+                            {% else %}
+                                 <span class="question__meta-item">{{ question.votes.count }} votes</span>
                             {% endif %}
                         </div>
                     </div>

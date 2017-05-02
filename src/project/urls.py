@@ -23,6 +23,7 @@ from questions.views.question_detail import QuestionDetailView
 from questions.views.topic_detail import TopicDetailView
 
 from project.views import login, auth_view, logout, register
+from questions.views.vote_question import vote_question
 
 urlpatterns = [
     # Question urls
@@ -39,4 +40,7 @@ urlpatterns = [
     url(r'^register/$', register, name="register"),
 
     url(r'^admin/', admin.site.urls),
+
+    # Vote url
+    url(r'^vote/(?P<question_slug>[\w-]+?)$', vote_question, name='vote')
 ]

@@ -12,6 +12,12 @@
         <h1 class="panel__title">Topics</h1>
         <div class="panel__info panel__info--left">
             <ul class="panel__list">
+
+                <li class="panel__list-item">
+                    <a href="{% url "index" %}" class="panel__list-item-link">All questions</a>
+                    <span class="panel__list-item-count">{{ question_count_all }}</span>
+                </li>
+
                 {% for topic in topic_list %}
                     <li class="panel__list-item">
                         <a class="panel__list-item-link" href="{% url "topic_detail" topic_slug=topic.slug %}">{{ topic.name }}</a>

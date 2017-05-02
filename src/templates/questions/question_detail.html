@@ -2,6 +2,21 @@
 
 {% block content %}
     <div class="question-detail">
+        <div class="question-detail__vote">
+            <span class="question-detail__vote--count">{{ question.votes.count }}</span>
+        </div>
+        {% if request.user.is_authenticated and question.author != request.user %}
+            {% if user_voted %}
+                    <a class="question-detail__vote" href="{% url "vote" question.slug %}">
+                        <i style="position: absolute" class="fa fa-chevron-up"></i>
+                    </a>
+            {% else %}
+                    <a class="question-detail__vote question-detail__vote--on" href="{% url "vote" question.slug %}">
+                        <i style="position: absolute" class="fa fa-chevron-up"></i>
+                    </a>
+            {% endif %}
+        {% endif %}
+
         <h1 class="question-detail__title">{{ question.title }}</h1>
 
         <div class="question">
@@ -10,9 +25,6 @@
             </div>
 
             <div class="question__content">
-            {{ question.votes.count }}
-                <a href="" onclick="question.votes.up(request.user)">Like</a>
-
                 <a class="question__author-name">{{ question.author.username }}</a>
                 <div class="question__meta question__meta--mbottom">
                     <span class="question__meta-item">
@@ -20,7 +32,7 @@
                     </span>
                     <span class="question__meta-item"> in
                         {% for topic in question.topics.all %}
-                            <a href="" class="link--orange">{{ topic.name }}</a>
+                            <a href="{% url "topic_detail" topic_slug=topic.slug %}" class="question__topic-link link--orange">{{ topic.name }}</a>
                         {% endfor %}
                     </span>
                 </div>

@@ -17,9 +17,11 @@ class Question(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     votes = VotableManager()
 
+    # Compute the nicely printable string representation of an object.
     def __str__(self):
         return self.title
 
+    # Calculate the URL for an object. Return a string, which can be used to refer to the object over HTTP
     def get_absolute_url(self):
         return reverse("question", kwargs={"pk": self.id})
 
@@ -38,6 +40,6 @@ class Topic(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey("questions.Question", related_name="answers")
     author = models.ForeignKey(User, default="")
-    text = models.CharField(max_length=200)
+    text = models.CharField(max_length=500)
     created_at = models.DateTimeField(default=timezone.now)
 

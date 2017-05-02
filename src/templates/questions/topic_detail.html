@@ -21,7 +21,7 @@
                             <span class="question__meta-item">{{ question.created_at }}</span>
                             <span class="question__meta-item">
                                 {% for topic in question.topics.all %}
-                                    <a href="" class="link--orange">{{ topic.name }}</a>
+                                    <a href="{% url "topic_detail" topic_slug=topic.slug %}" class="question__topic-link link--orange">{{ topic.name }}</a>
                                 {% endfor %}
                             </span>
                         </div>

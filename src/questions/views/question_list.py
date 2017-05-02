@@ -18,6 +18,7 @@ class QuestionListView(QuestionPaginationMixin, ListView):
 
     def get_context_data(self, **kwargs):
         data = super(QuestionListView, self).get_context_data(**kwargs)
+        data["question_count_all"] = Question.objects.all().count()
         data["topic_list"] = Topic.objects.all().annotate(question_count=Count("questions"))
         data["page"] = self._page
         return data

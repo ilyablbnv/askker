@@ -163,10 +163,20 @@ ul {
 .question-detail {
   padding: 20px 0; }
   .question-detail__title {
-    margin: 0;
+    margin: 0 5px;
+    display: inline-block;
     font-size: 24px;
     font-weight: 400;
     line-height: 36px; }
+  .question-detail__vote {
+    position: relative;
+    display: inline-block;
+    width: 17px;
+    height: 17px; }
+    .question-detail__vote--on {
+      color: #FF6E40; }
+    .question-detail__vote--count {
+      position: absolute; }
 
 .answer-list__title {
   color: #eeeeee; }

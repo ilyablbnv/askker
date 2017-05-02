@@ -9,7 +9,9 @@
   "author": "Illya Balabanov",
   "license": "ISC",
   "devDependencies": {
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.0.0"
+    "gulp-sass": "^3.0.0",
+    "jquery": "^3.1.1"
   }
 }
